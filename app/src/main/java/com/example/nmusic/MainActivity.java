@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     String[] items;
-    int pos;
     ArrayList<File> mySongs;
     public static MediaPlayer mediaPlayer=null;
 
@@ -85,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String sname=(String)listView.getItemAtPosition(pos);
+                String sname=(String)listView.getItemAtPosition(position);
         startActivity(new Intent(getApplicationContext(),PlayerActivity.class)
                 .putExtra("songs",mySongs)
                 .putExtra("songName",sname)
-                .putExtra("pos",pos));
+                .putExtra("pos",position));
             }
         });
     }

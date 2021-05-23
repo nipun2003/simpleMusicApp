@@ -43,6 +43,10 @@ public class PlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+        }
 
 //        Setup the Action Bar
         getSupportActionBar().setTitle("Now Playing");
@@ -69,7 +73,6 @@ public class PlayerActivity extends AppCompatActivity {
 
         mySongs=(ArrayList)bundle.getParcelableArrayList("songs");
         String songName=i.getStringExtra("songName");
-        int duration=bundle.getInt("duration",0);
         position=bundle.getInt("pos",0);
         txtsname.setSelected(true);
         sname=mySongs.get(position).getName();
@@ -78,7 +81,6 @@ public class PlayerActivity extends AppCompatActivity {
 //        Initializing the Uri and Mediaplayer fo current song
         Uri uri=Uri.parse(mySongs.get(position).toString());
         mediaPlayer=MediaPlayer.create(getApplicationContext(),uri);
-        mediaPlayer.seekTo(duration);
         mediaPlayer.start();
         startAllMethod();
         playbtn.setOnClickListener(new View.OnClickListener() {
